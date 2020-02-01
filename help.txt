@@ -1,0 +1,4 @@
+usage 使い方
+0. chmod 755 init.sh; chmod 755 CC.sh; をする.
+1. init.sh "dirname(フォルダを作りたい場所)"; をする.
+2. CC.sh "title(競プロのタイトル ex. ABC155, AGC023, etc)"; をする.
