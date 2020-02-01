@@ -8,7 +8,10 @@ if [ $? -ne 0 ]; do
   exit 1;
 done
 for i in `ls TestCase/Testcase*.txt`; do
+  cat $i
+  echo -e "\n"
   ./a.out < $i
+  echo -e "\n\n"
 done
 
 cp *.cpp temp.cpp
