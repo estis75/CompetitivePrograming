@@ -16,7 +16,7 @@ if [ $? -eq 0 ]; then
   mkdir $1/AtCoder/default
   mkdir $1/AtCoder/default/Templates
   for i in {A..F}; do
-    echo -e "#include<bits/stdc++.h>\n#include\"Templates/libraries.h\"" > $1/AtCoder/default/$i.cpp
+    echo -e "#include<bits/stdc++.h>\n#include\"Templates/libraries.h\"\n{\n}" > $1/AtCoder/default/$i.cpp
   done
 #  cp Clear.sh $1/AtCoder/default
 #  chmod 755 $1/AtCoder/default/Clear.sh

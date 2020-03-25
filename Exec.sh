@@ -3,31 +3,22 @@
 if [ -e output.cpp ]; then
   rm output.cpp
 fi
-g++ -O3 *.cpp
-if [ $? -ne 0 ]; do
+g++ -O3 `basename \`pwd\``.cpp
+if [ $? -ne 0 ]; then
   exit 1;
-done
+fi
 for i in `ls TestCase/Testcase*.txt`; do
   cat $i
-  echo -e "\n"
   ./a.out < $i
-  echo -e "\n\n"
+  echo -e "\n"
 done
 
-cp *.cpp temp.cpp
-touch output.cpp 
-sed '1d' temp.cpp > temp.cpp
-cat temp.cpp 
-cat "\n"
-sed '1d' temp.cpp > temp.cpp
-cat temp.cpp 
-cat "\n"
+cp `basename \`pwd\``.cpp temp.cpp
 
-echo "#include<bits/stdc++.h>" > output.cpp
+touch output.cpp
 for i in `ls Templates/`; do
-  cat Templates/$i | grep -v "include" | grep -v "define">> output.cpp
+  cat Templates/$i | grep -v "include|define">> output.cpp
 done
-cat temp.cpp >> output.cpp
+sed '1,3d' temp.cpp >> output.cpp
 
 rm temp.cpp
- 
