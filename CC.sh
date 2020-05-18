@@ -23,6 +23,8 @@ for i in {A..F}; do
   
   mkdir TestCase
   touch TestCase/Testcase1.txt
-
+  
   cd ..;
 done
+
+code .
