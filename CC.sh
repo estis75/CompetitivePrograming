@@ -2,7 +2,7 @@
 
 # AtCoderディレクトリ上で動く
 if [ $# -ne 1 ]; then
-  echo "designate a title"
+  echo "designate a new file."
   exit 1;
 fi
 
