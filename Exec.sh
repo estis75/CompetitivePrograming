@@ -6,7 +6,7 @@ if [ $# -ne 1 ]; then
 fi
 
 if [ "$1" == "init" ]; then
-  rm testCase/*
+  rm testCase/* 2> /dev/null
   for i in {1..10}; do
     touch testCase/`printf %02d $i`.txt
   done
@@ -31,7 +31,7 @@ if [ -e $output ]; then
   rm $output
 fi
 
-g++ -O3 $1
+g++ -O2 $1 -I ../default/ac-library -I ../default/Templates
 if [ $? -ne 0 ]; then
   exit 1;
 fi
@@ -50,12 +50,14 @@ done
 cp $1 temp.cpp
 
 touch $output
-cat Templates/libraries.h | head -2 >> $output
-for i in `cat Templates/libraries.h | grep "include\".*\""`; do
+cat ../default/Templates/libraries.h | head -2 >> $output
+echo "using namespace std;" >> $output
+for i in `cat ../default/Templates/libraries.h | grep "include\".*\""`; do
   i=`echo ${i/\#include/} | sed -e 's/\"//g' `
-  cat Templates/$i | sed -e '/using/d' | sed -e '/include/d' >> $output
+  cat ../default/Templates/$i | sed -e '/using namespace std;/d' | sed -e '/include/d' >> $output
 done
-sed -e '/\#include\".*\"/d' Templates/libraries.h | tail -n +3 >> $output
+cat ../default/Templates/libraries.h | sed -e '/using namespace std;/d' | sed -e '/include/d' >> $output
+
 sed '1,3d' temp.cpp >> $output
 
 rm temp.cpp a.out

@@ -17,18 +17,19 @@ for i in {A..F}; do
   else
     touch $i.cpp
   fi
-  cp -p ../default/Exec.sh .
-  cp -p ../default/Makefile .
-  cp -r ../default/Templates .
-  rm Templates/*.cpp
   
   #cd ..;
 done
+cp -p ../default/Exec.sh .
+cp -p ../default/unite.sh .
+cp -p ../default/Makefile .
+# cp -r ../default/Templates .
+cp -r ../default/.vscode .
 
 mkdir testCase
-for i in {1..10}; do
-  touch testCase/`printf %02d $i`.txt
-done
-  
+./Exec.sh init
+# for i in {1..10}; do
+  # touch testCase/`printf %02d $i`.txt
+# done
 
 code .

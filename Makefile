@@ -1,20 +1,8 @@
-A: A.cpp
-	./Exec.sh A.cpp
+latest_file=$(shell ls -t *.cpp | grep -v "_out" | head -1)
+latest_file_out=$(shell ls -t *_out.cpp | head -1)
 
-B: B.cpp
-	./Exec.sh B.cpp
-
-C: C.cpp
-	./Exec.sh C.cpp
-
-D: D.cpp
-	./Exec.sh D.cpp
-
-E: E.cpp
-	./Exec.sh E.cpp
-
-F: F.cpp
-	./Exec.sh F.cpp
+run: 
+	./Exec.sh ${latest_file}
 
 clear: 
 	./Exec.sh clear
@@ -24,3 +12,6 @@ copy:
 	mkdir tmp
 	cp -r testCase tmp/
 	cp  *.cpp tmp
+
+unite: run
+	./unite.sh
